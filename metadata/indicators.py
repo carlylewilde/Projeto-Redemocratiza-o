@@ -1,0 +1,21 @@
+"""Catálogo central de indicadores e decisões de tratamento."""
+INDICATORS = {
+    "cambio_venda":{"label":"Câmbio comercial venda","source":"BCB_SGS","series_code":1,"unit":"BRL/USD","frequency":"daily","kind":"level","deflate":False,"seasonal_adjust":False},
+    "selic_meta":{"label":"Meta Selic","source":"BCB_SGS","series_code":432,"unit":"% a.a.","frequency":"daily","kind":"rate","deflate":False,"seasonal_adjust":False},
+    "ipca_mensal":{"label":"IPCA mensal","source":"BCB_SGS","series_code":433,"unit":"% a.m.","frequency":"monthly","kind":"rate","deflate":False,"seasonal_adjust":False},
+    "igpm_mensal":{"label":"IGP-M mensal","source":"BCB_SGS","series_code":189,"unit":"% a.m.","frequency":"monthly","kind":"rate","deflate":False,"seasonal_adjust":False},
+    "divida_bruta_pib":{"label":"Dívida bruta do governo geral / PIB","source":"BCB_SGS","series_code":13762,"unit":"% PIB","frequency":"monthly","kind":"rate","deflate":False,"seasonal_adjust":False},
+    "reservas_internacionais":{"label":"Reservas internacionais","source":"BCB_SGS","series_code":13621,"unit":"US$ milhões","frequency":"daily","kind":"level","deflate":False,"seasonal_adjust":False},
+    "pib_real_trimestral":{"label":"PIB trimestral real - valores encadeados","source":"IBGE_SIDRA","table":6612,"unit":"índice/valor encadeado","frequency":"quarterly","kind":"level","deflate":False,"seasonal_adjust":False,"method_breaks":[],"methodology_note":"A série SIDRA atual foi revisada/retropolada sob o sistema de contas vigente; não se força uma quebra artificial no vintage corrente."},
+    "pib_nominal_trimestral":{"label":"PIB trimestral a preços correntes","source":"IBGE_SIDRA","table":1846,"unit":"R$ milhões","frequency":"quarterly","kind":"level","deflate":True,"seasonal_adjust":False},
+    "desemprego_trimestral":{"label":"Taxa de desocupação - PNAD Contínua","source":"IBGE_SIDRA","table":4099,"unit":"%","frequency":"quarterly","kind":"rate","deflate":False,"seasonal_adjust":True,"method_breaks":["2012-01-01"]},
+    "desemprego_movel":{"label":"Taxa de desocupação - trimestre móvel","source":"IBGE_SIDRA","table":6381,"unit":"%","frequency":"monthly","kind":"rate","deflate":False,"seasonal_adjust":True,"method_breaks":["2012-03-01"]},
+    "gini":{"label":"Índice de Gini","source":"IPEADATA","unit":"índice","frequency":"annual","kind":"level","deflate":False,"seasonal_adjust":False,"discovery_keyword":"Gini"},
+    "salario_minimo_real":{"label":"Salário mínimo real","source":"IPEADATA","unit":"R$ reais","frequency":"monthly_or_annual","kind":"level","deflate":False,"seasonal_adjust":False,"discovery_keyword":"salário mínimo real"},
+    "pobreza":{"label":"Pobreza","source":"IPEADATA","unit":"% ou pessoas","frequency":"annual","kind":"level","deflate":False,"seasonal_adjust":False,"discovery_keyword":"pobreza"},
+    "pib_per_capita_usd_constante":{"label":"PIB per capita (US$ constantes)","source":"WORLD_BANK","unit":"US$ constantes","frequency":"annual","kind":"level","deflate":False,"seasonal_adjust":False},
+    "crescimento_pib":{"label":"Crescimento real do PIB","source":"WORLD_BANK","unit":"% a.a.","frequency":"annual","kind":"rate","deflate":False,"seasonal_adjust":False},
+    "expectativa_vida":{"label":"Expectativa de vida ao nascer","source":"WORLD_BANK","unit":"anos","frequency":"annual","kind":"level","deflate":False,"seasonal_adjust":False},
+    "mortalidade_infantil":{"label":"Mortalidade infantil","source":"WORLD_BANK/DATASUS","unit":"por 1.000 nascidos vivos","frequency":"annual","kind":"rate","deflate":False,"seasonal_adjust":False},
+    "gini_wb":{"label":"Índice de Gini (World Bank)","source":"WORLD_BANK","unit":"índice 0-100","frequency":"annual","kind":"level","deflate":False,"seasonal_adjust":False},
+}
