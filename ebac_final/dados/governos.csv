@@ -1,0 +1,13 @@
+﻿governo,presidente,data_inicio,data_fim,mandato_completo,forma_saida,partido,coligacao,periodo_parcial,duracao_dias
+Sarney,José Sarney,1985-03-15,1990-03-14,True,transição constitucional,PMDB,Aliança Democrática / chapa Tancredo-Sarney,False,1826
+Collor,Fernando Collor,1990-03-15,1992-10-01,False,afastamento durante processo de impeachment; renúncia posterior,PRN,Movimento Brasil Novo,False,932
+Itamar,Itamar Franco,1992-10-02,1994-12-31,False,complementação de mandato,PMDB,Vice eleito na chapa Collor-Itamar,False,821
+FHC I,Fernando Henrique Cardoso,1995-01-01,1998-12-31,True,reeleição,PSDB,Coalizão eleitoral liderada por PSDB/PFL/PTB,False,1461
+FHC II,Fernando Henrique Cardoso,1999-01-01,2002-12-31,True,fim de mandato,PSDB,Coalizão eleitoral liderada por PSDB/PFL,False,1461
+Lula I,Luiz Inácio Lula da Silva,2003-01-01,2006-12-31,True,reeleição,PT,Lula Presidente,False,1461
+Lula II,Luiz Inácio Lula da Silva,2007-01-01,2010-12-31,True,fim de mandato,PT,A Força do Povo,False,1461
+Dilma I,Dilma Rousseff,2011-01-01,2014-12-31,True,reeleição,PT,Para o Brasil Seguir Mudando,False,1461
+Dilma II,Dilma Rousseff,2015-01-01,2016-05-11,False,afastamento durante impeachment,PT,Com a Força do Povo,False,497
+Temer,Michel Temer,2016-05-12,2018-12-31,False,complementação de mandato,MDB,Vice eleito na chapa Dilma-Temer em 2014,False,964
+Bolsonaro,Jair Bolsonaro,2019-01-01,2022-12-31,True,fim de mandato,PSL na eleição de 2018,PSL/PRTB,False,1461
+Lula III,Luiz Inácio Lula da Silva,2023-01-01,2024-12-31,False,em_andamento,PT,Brasil da Esperança / alianças eleitorais de 2022,True,731
