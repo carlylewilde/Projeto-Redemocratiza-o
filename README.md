@@ -1,90 +1,107 @@
 # Indicadores do Brasil por período presidencial — 1985–2024
 
-Pipeline Python para extração, tratamento, normalização e análise estatística de indicadores macroeconômicos, sociais e fiscais do Brasil no período pós-redemocratização. O repositório produz uma camada `tidy` pronta para dashboard e um dashboard HTML autocontido em `dashboard/index.html`.
+Projeto de análise de dados sobre a evolução de indicadores econômicos e sociais do Brasil no período pós-redemocratização, com comparação descritiva entre períodos presidenciais.
 
-> **Escopo analítico:** comparação descritiva de períodos presidenciais. O projeto não presume causalidade entre governo e resultado econômico/social e não gera placar agregado ou ranking político.
+> **Escopo analítico:** o projeto descreve diferenças observadas nas séries ao longo do tempo. Não presume causalidade entre governo e resultado econômico/social e não gera ranking político agregado.
 
-## Estrutura
+## Projeto Final EBAC
+
+A versão consolidada utilizada no projeto final da EBAC está disponível em [`ebac_final/`](ebac_final/).
+
+Ela foi organizada a partir do pipeline mais amplo deste repositório, mantendo apenas os indicadores com cobertura histórica mais consistente para o recorte de 1985–2024 e concentrando a análise em duas dimensões: **economia** e **indicadores sociais**.
+
+### Pergunta de análise
+
+**Como evoluíram os principais indicadores econômicos e sociais do Brasil entre 1985 e 2024, e quais diferenças podem ser observadas entre os períodos presidenciais?**
+
+### Indicadores utilizados na versão EBAC
+
+- Crescimento real do PIB
+- PIB per capita real
+- IPCA acumulado no ano
+- Taxa de desemprego harmonizada
+- Índice de Desenvolvimento Humano (IDH)
+- Expectativa de vida
+- Mortalidade infantil
+
+### Fontes utilizadas
+
+A versão final combina dados públicos de:
+
+- **World Bank / World Development Indicators** — crescimento do PIB, PIB per capita real, desemprego, expectativa de vida e mortalidade infantil;
+- **Banco Central do Brasil / SGS** — série mensal do IPCA;
+- **UNDP / Human Development Reports, via Our World in Data** — IDH.
+
+### Preparação aplicada aos dados
+
+Foram mantidas três tabelas analíticas principais: indicadores econômicos, indicadores sociais e dimensão de períodos presidenciais. O tratamento inclui padronização de datas e unidades, identificação de fonte e frequência, associação ao período presidencial, marcação de anos de transição e criação de colunas derivadas.
+
+O IPCA anual foi calculado pela composição das taxas mensais, e não por média simples. Os anos de transição permanecem nas séries históricas, mas são excluídos das estatísticas agregadas por período presidencial.
+
+### Pontos utilizados na análise exploratória
+
+A versão EBAC foi estruturada em sete frentes de análise:
+
+1. evolução temporal dos sete indicadores;
+2. média e mediana por período presidencial;
+3. distribuições e identificação de outliers pelo intervalo interquartil (IQR);
+4. correlação de Pearson entre indicadores;
+5. dispersão entre PIB per capita e indicadores sociais;
+6. variação anual dos indicadores selecionados;
+7. comparação consolidada por período presidencial.
+
+### Dashboard final
+
+O dashboard final foi desenvolvido em HTML com Plotly e possui navegação lateral, indicadores de destaque, séries históricas, comparação por período, cobertura amostral, matriz de correlação, scatterplots e seção metodológica.
+
+Arquivos principais da versão final:
+
+- [`ebac_final/README.md`](ebac_final/README.md)
+- [`ebac_final/dashboard/dashboard_indicadores_redemocratizacao.html`](ebac_final/dashboard/dashboard_indicadores_redemocratizacao.html)
+- [`ebac_final/docs/RELATORIO_FINAL.md`](ebac_final/docs/RELATORIO_FINAL.md)
+- [`ebac_final/src/gerar_dashboard.py`](ebac_final/src/gerar_dashboard.py)
+- [`ebac_final/dados/`](ebac_final/dados/)
+
+---
+
+## Estrutura do projeto original
 
 ```text
 .
 ├── analysis/
-│   ├── descriptive.py
-│   ├── export.py
-│   ├── relationships.py
-│   ├── significance.py
-│   ├── trends.py
-│   └── relatorio_metodologico.md
 ├── dashboard/
-│   └── index.html
 ├── data/
-│   ├── raw/
-│   └── processed/
 ├── etl/
-│   ├── common.py
-│   ├── extract_bcb.py
-│   ├── extract_datasus.py
-│   ├── extract_ibge.py
-│   ├── extract_ipeadata.py
-│   ├── extract_transparencia.py
-│   ├── extract_worldbank.py
-│   └── normalize.py
 ├── metadata/
-│   ├── governments.py
-│   └── indicators.py
 ├── notebooks/
-│   └── analise_exploratoria.ipynb
 ├── tests/
-│   ├── test_governments.py
-│   └── test_normalize.py
-├── .github/workflows/tests.yml
-├── .env.example
-├── .gitignore
-├── requirements.txt
-└── run_pipeline.py
+├── ebac_final/
+├── run_pipeline.py
+└── requirements.txt
 ```
+
+O projeto original preserva um pipeline mais amplo de extração, normalização e análise de indicadores macroeconômicos, sociais e fiscais. A pasta `ebac_final/` representa o recorte consolidado e documentado para a entrega acadêmica.
 
 ## Governos como unidade de análise
 
-O catálogo contém Sarney, Collor, Itamar, FHC I, FHC II, Lula I, Lula II, Dilma I, Dilma II, Temer, Bolsonaro e Lula III. Collor/Itamar e Dilma II/Temer usam a data de início do exercício interino do sucessor para atribuição das observações; a data formal posterior do desfecho é preservada em notas.
+O catálogo contempla Sarney, Collor, Itamar, FHC I, FHC II, Lula I, Lula II, Dilma I, Dilma II, Temer, Bolsonaro e Lula III. O recorte principal termina em 31/12/2024.
 
-Lula III é sempre sinalizado como período parcial/em andamento; o recorte principal deste projeto termina em **31/12/2024**.
-
-## Fontes
-
-- Banco Central do Brasil — SGS: <https://www.bcb.gov.br/estabilidadefinanceira/seriestemporais>
-- API SGS: <https://api.bcb.gov.br/>
-- IBGE — SIDRA: <https://sidra.ibge.gov.br/>
-- API SIDRA: <https://apisidra.ibge.gov.br/>
-- IpeaData: <http://www.ipeadata.gov.br/>
-- DataSUS/TabNet: <https://datasus.saude.gov.br/informacoes-de-saude-tabnet/>
-- Portal da Transparência — API/Dados Abertos: <https://portaldatransparencia.gov.br/api-de-dados/> e <https://portaldatransparencia.gov.br/download-de-dados/>
-- World Bank Indicators API v2: <https://datahelpdesk.worldbank.org/knowledgebase/articles/889392>
-- Datas de exercício presidencial: <https://www.gov.br/cti/pt-br/trajetoria-historica/presidentes-da-republica-desde-a-criacao-do-cti>
-- Coligações recentes: Tribunal Superior Eleitoral — <https://www.tse.jus.br/>
-
-## Instalação
+## Instalação do pipeline original
 
 ```bash
 python -m venv .venv
-# Linux/macOS
 source .venv/bin/activate
-# Windows PowerShell
-# .venv\Scripts\Activate.ps1
-
 pip install -r requirements.txt
 ```
 
-Para despesas do Portal da Transparência:
+No Windows PowerShell:
 
-```bash
-cp .env.example .env
-# Defina TRANSPARENCIA_API_KEY no ambiente.
+```powershell
+.venv\Scripts\Activate.ps1
+pip install -r requirements.txt
 ```
 
-## Execução
-
-Pipeline completo:
+## Execução do pipeline original
 
 ```bash
 python run_pipeline.py --stage all
@@ -99,76 +116,20 @@ python run_pipeline.py --stage analyze
 python run_pipeline.py --stage export
 ```
 
-Ignorar cache e consultar novamente as APIs:
-
-```bash
-python run_pipeline.py --stage extract --force
-```
-
-## Outputs gerados
-
-- `data/processed/painel_governos.parquet` — formato tidy: data × indicador × governo.
-- `data/processed/resumo_estatistico_por_governo.csv` — formato largo, uma linha por período presidencial.
-- `data/processed/resumo_estatistico_longo.csv` — governo × indicador × estatística.
-- `data/processed/painel_governos.json` — JSON compacto para front-end.
-- `analysis/outputs/correlacoes_mensais.csv` — correlações exploratórias.
-- `analysis/outputs/rupturas_detectadas.csv` — rupturas exploratórias detectadas por PELT.
-
-## Normalização: decisões obrigatórias
-
-### Deflação
-
-Valores monetários nominais são convertidos para reais de dezembro de 2024 pelo IPCA. A regra é explícita no código:
-
-```text
-valor_real_t = valor_nominal_t × (P_base / P_t)
-```
-
-Não compare reais nominais entre décadas.
-
-### Quebras metodológicas
-
-A coluna `quebra_metodologica` é preservada. PNAD Contínua não é tratada como continuação automática da PNAD antiga. Para PIB, a série SIDRA corrente é uma série revisada/retropolada; por isso o projeto não inventa uma quebra dentro do vintage atual apenas pela data de publicação do novo sistema de contas.
-
-### Mês de mandato
-
-`mes_mandato` e `percentual_mandato_decorrido` permitem comparar trajetórias com durações diferentes.
-
-### Base 100
-
-`indice_base100` mede trajetória relativa ao primeiro ponto do mandato. Não representa nível absoluto nem “qualidade” do governo.
-
-### Ajuste sazonal
-
-STL é usado quando a série e o número de observações permitem. X-13 pode ser acrescentado em ambientes que tenham o binário instalado.
-
-Consulte `analysis/relatorio_metodologico.md` antes de interpretar os resultados.
-
 ## Testes
 
 ```bash
 pytest -q
 ```
 
-Os testes verificam, entre outros pontos, a matemática da deflação, da indexação base 100 e a ausência de sobreposição entre períodos presidenciais.
+## Fontes do projeto ampliado
 
-## Dashboard
+- Banco Central do Brasil — SGS
+- IBGE — SIDRA
+- IpeaData
+- DataSUS / TabNet
+- Portal da Transparência
+- World Bank Indicators API
+- Tribunal Superior Eleitoral e fontes oficiais para metadados históricos
 
-Abra `dashboard/index.html` diretamente no navegador. Ele usa dados demonstrativos embutidos para funcionar sem servidor e contém comentários indicando dois pontos de integração:
-
-1. substituir o objeto JS de demonstração por dados reais;
-2. em GitHub Pages/servidor HTTP, carregar `data/processed/painel_governos.json` via `fetch`.
-
-O card tabular foi implementado como **Comparação por Indicador em ordem cronológica**, e não como ranking de governos.
-
-## GitHub Pages
-
-No GitHub, configure **Settings → Pages → Deploy from a branch** e aponte para a branch `main`. O mesmo dashboard já está copiado para `index.html` na raiz, então a página inicial fica pronta para publicação.
-
-## Reprodutibilidade
-
-- Todas as linhas carregam `fonte` e `data_extracao`.
-- Cache local evita chamadas repetidas.
-- APIs usam retry/backoff.
-- Séries anuais em anos de transição fora de 1º de janeiro são marcadas como atribuição ambígua.
-- Lula III permanece identificado como parcial.
+Consulte a documentação de cada camada do repositório para detalhes metodológicos e de cobertura.
