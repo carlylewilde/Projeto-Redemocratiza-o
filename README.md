@@ -52,15 +52,14 @@ A versão EBAC foi estruturada em sete frentes de análise:
 
 ### Dashboard final
 
-O dashboard final foi desenvolvido em HTML com Plotly e possui navegação lateral, indicadores de destaque, séries históricas, comparação por período, cobertura amostral, matriz de correlação, scatterplots e seção metodológica.
+O dashboard final foi desenvolvido em HTML com Plotly e possui navegação lateral, indicadores de destaque, séries históricas, comparação por período, cobertura amostral, matriz de correlação, scatterplots e seção metodológica. Para facilitar a visualização no GitHub, as séries usadas no painel estão incorporadas ao próprio HTML.
 
 Arquivos principais da versão final:
 
 - [`ebac_final/README.md`](ebac_final/README.md)
 - [`ebac_final/dashboard/dashboard_indicadores_redemocratizacao.html`](ebac_final/dashboard/dashboard_indicadores_redemocratizacao.html)
 - [`ebac_final/docs/RELATORIO_FINAL.md`](ebac_final/docs/RELATORIO_FINAL.md)
-- [`ebac_final/src/gerar_dashboard.py`](ebac_final/src/gerar_dashboard.py)
-- [`ebac_final/dados/`](ebac_final/dados/)
+- [`ebac_final/dados/`](ebac_final/dados/) — metadados dos períodos e validação da estrutura analítica
 
 ---
 

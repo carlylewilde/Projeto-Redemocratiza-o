@@ -76,33 +76,21 @@ Basta abrir o arquivo em um navegador. O painel contém navegação lateral e as
 
 O dashboard foi desenvolvido em HTML com gráficos interativos em Plotly.
 
-O arquivo `src/gerar_dashboard.py` reconstrói o dashboard final a partir das bases da pasta `dados/`, mantendo a mesma estrutura, gráficos, controles e organização visual do arquivo entregue.
+O arquivo HTML publicado nesta pasta é autocontido para visualização direta no navegador. As séries utilizadas no painel estão incorporadas ao próprio dashboard, mantendo os mesmos indicadores, recortes temporais e regras analíticas da versão final.
 
-## Execução local
-
-Com Python 3 instalado:
-
-```bash
-pip install -r requirements.txt
-python src/preparar_dados.py
-python src/gerar_dashboard.py
-```
-
-O dashboard será gerado em:
-
-`dashboard/dashboard_indicadores_redemocratizacao.html`
-
-## Estrutura do projeto
+## Estrutura publicada no GitHub
 
 ```text
-Dashboard_Indicadores_Redemocratizacao_ENTREGA_FINAL/
+ebac_final/
 ├── README.md
-├── requirements.txt
-├── dados/
-├── analises/
 ├── dashboard/
+│   └── dashboard_indicadores_redemocratizacao.html
 ├── docs/
-└── src/
+│   ├── FONTES.md
+│   └── RELATORIO_FINAL.md
+└── dados/
+    ├── governos.csv
+    └── validacao_etapa4.csv
 ```
 
 ## Limitações
